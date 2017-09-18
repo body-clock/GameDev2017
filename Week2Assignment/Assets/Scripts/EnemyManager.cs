@@ -8,9 +8,12 @@ public class EnemyManager : MonoBehaviour
 	public static EnemyManager Instance;
 	
 	public GameObject enemyPrefab;
+	public GameObject bonusPrefab;
+	
 	public GameObject enemyFormation;
 	
 	public Enemy e;
+	public Bonus b;
 	
 	public int speed;
 	public int enemyCount = 5;
@@ -18,6 +21,7 @@ public class EnemyManager : MonoBehaviour
 	public Vector3 formationSpawn;
 
 	private List<Enemy> enemyList;
+	private List<Bonus> bonusList;
 
 	void Start ()
 	{
@@ -37,6 +41,12 @@ public class EnemyManager : MonoBehaviour
 		{	
 			e = new Enemy();	
 			enemyList.Add(e);
+		}
+
+		for (int i = 0; i <= Bonus.frequency; i++)
+		{
+			b = new Bonus();
+			//didnt need to add to a list. why?
 		}
 		
 	}

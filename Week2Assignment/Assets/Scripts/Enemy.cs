@@ -30,5 +30,5 @@ public class Enemy
 		enemyVisual = GameObject.Instantiate(EnemyManager.Instance.enemyPrefab, new Vector3(xCoord, yCoord), Quaternion.identity);
 		enemyVisual.transform.parent = EnemyManager.Instance.enemyFormation.transform;
 	}
-	
+
 }

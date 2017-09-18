@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class Turret : MonoBehaviour
 {
+    public float turretSpeed = 5f;
+    
     private void Update()
     {
         FaceMouse();
+        MoveTurret();
     }
 
     void FaceMouse()
@@ -20,4 +23,11 @@ public class Turret : MonoBehaviour
 
         transform.up = direction;
     }
+
+    void MoveTurret()
+    {
+        var move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        transform.position += move * turretSpeed * Time.deltaTime;
+    }
+    
 }

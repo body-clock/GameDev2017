@@ -7,19 +7,25 @@ public class EnemyManager : MonoBehaviour
 
 	public static EnemyManager Instance;
 	
+	//prefabs so I can instantiate them
 	public GameObject enemyPrefab;
 	public GameObject bonusPrefab;
 	
+	//formation so I can move all as a whole
 	public GameObject enemyFormation;
 	
+	//declaring instances of my classes so I can instantiate in for loop
 	public Enemy e;
 	public Bonus b;
 	
 	public int speed;
+	//dynamic enemy count can be changed in inspector and the list size adjusts
 	public int enemyCount = 5;
-
+	
+	//start location of the formation
 	public Vector3 formationSpawn;
-
+	
+	//making my lists to store enemies (lists are dynamic, arrays are not)
 	private List<Enemy> enemyList;
 	private List<Bonus> bonusList;
 

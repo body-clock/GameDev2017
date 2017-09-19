@@ -6,28 +6,24 @@ using UnityEngine;
 
 public class Enemy
 {
-
+	//visual representation of our enemy
 	public GameObject enemyVisual;
+	//randomized coordinates in space
 	public int xCoord;
 	public int yCoord;
-	public string name;
-	public Transform enemyPos;
-
-	public Vector3 screenPos;
-	
-	
 
 	public Enemy()
 	{
 		//constructor - runs when we say "new"
 		
 		//casting a float as an int
-		xCoord = (int) UnityEngine.Random.Range(-8f,8f);
-		yCoord = (int) UnityEngine.Random.Range(5f,10f);
+		xCoord = (int) Random.Range(-8f,8f);
+		yCoord = (int) Random.Range(5f,10f);
 
 		//instantiating our visual with our prefab
 		//setting the parent object to the formation object
 		enemyVisual = GameObject.Instantiate(EnemyManager.Instance.enemyPrefab, new Vector3(xCoord, yCoord), Quaternion.identity);
+		//parenting to the formation so we can move as a whole
 		enemyVisual.transform.parent = EnemyManager.Instance.enemyFormation.transform;
 	}
 

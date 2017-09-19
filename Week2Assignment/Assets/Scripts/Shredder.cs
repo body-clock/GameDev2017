@@ -5,6 +5,8 @@ using UnityEngine;
 public class Shredder : MonoBehaviour
 
 {
+	//simple script for destroying gameobjects once they leave the screen
+	//and collide with our shredder
 	private void OnTriggerEnter2D(Collider2D other)
 	{
 		if (other.CompareTag("Enemy") || other.CompareTag("Bonus"))

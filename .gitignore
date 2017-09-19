@@ -33,3 +33,8 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+Week2Assignment/Library/
+
+Week2Assignment/\.idea/\.idea\.Week2Assignment/\.idea/workspace\.xml
+
+Week2Assignment/obj/Debug/

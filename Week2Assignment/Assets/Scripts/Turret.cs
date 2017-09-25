@@ -34,5 +34,22 @@ public class Turret : MonoBehaviour
         var move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
         transform.position += move * turretSpeed * Time.deltaTime;
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Bonus"))
+        {
+            Debug.Log("BONUS!");
+            Destroy(other.gameObject);
+
+            GameManager.Instance.score++;
+
+        }
+        
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            GameManager.Instance.score--;
+        }
+    }
+
 }

@@ -18,4 +18,9 @@ public class GameManager : MonoBehaviour
 		//setting it to itself
 		Instance = this;
 	}
+
+	private void Update()
+	{
+		Debug.Log(score);
+	}
 }

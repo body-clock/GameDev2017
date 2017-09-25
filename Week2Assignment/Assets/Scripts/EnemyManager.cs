@@ -62,7 +62,8 @@ public class EnemyManager : MonoBehaviour
 		//moves the formation downwards
 		enemyFormation.transform.position += Vector3.down * speed * Time.deltaTime;
 	}
-	
+
+
 	// Update is called once per frame
 	void Update () {
 		

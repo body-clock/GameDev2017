@@ -13,6 +13,8 @@ public class Bonus {
     public Vector3 screenPos;
 
     public static int frequency;
+
+    public int scoreBonus = 10;
 	
 
     public Bonus()
@@ -31,5 +33,6 @@ public class Bonus {
         bonusVisual = GameObject.Instantiate(EnemyManager.Instance.bonusPrefab, new Vector3(xCoord, yCoord), Quaternion.identity);
         bonusVisual.transform.parent = EnemyManager.Instance.enemyFormation.transform;
     }
+    
 
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 public class Turret : MonoBehaviour
 {
     public float turretSpeed = 5f;
+
+    public GameObject BonusParticle;
+    public GameObject TerrainParticle;
     
     private void Update()
     {
@@ -41,6 +44,7 @@ public class Turret : MonoBehaviour
         {
             Debug.Log("BONUS!");
             Destroy(other.gameObject);
+            Instantiate(BonusParticle, gameObject.transform.position, Quaternion.identity);
 
             GameManager.Instance.score++;
 
@@ -48,6 +52,8 @@ public class Turret : MonoBehaviour
         
         if (other.gameObject.CompareTag("Enemy"))
         {
+            Instantiate(TerrainParticle, gameObject.transform.position, Quaternion.identity);
+            
             GameManager.Instance.score--;
         }
     }

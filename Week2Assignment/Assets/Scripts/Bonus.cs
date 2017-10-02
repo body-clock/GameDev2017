@@ -21,7 +21,7 @@ public class Bonus {
     {
         //constructor - runs when we say "new"
 
-        frequency = (int) UnityEngine.Random.Range(0f, 3f);
+        frequency = (int) UnityEngine.Random.Range(1f, 4f);
         Debug.Log(frequency);
 		
         //casting a float as an int

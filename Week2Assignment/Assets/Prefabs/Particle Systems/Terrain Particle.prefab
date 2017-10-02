@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4378315998511178}
   - component: {fileID: 198718853418538170}
+  - component: {fileID: 114492056467462882}
   - component: {fileID: 199133540479566316}
   m_Layer: 0
   m_Name: Terrain Particle
@@ -41,6 +42,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114492056467462882
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1522724854245664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd14a2f57a203d64eb8df84f82e50789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &198718853418538170
 ParticleSystem:
   m_ObjectHideFlags: 1

@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 
     //not really using this script, as the only thing it does is handle score
 	//which I don't have yet
-	public int score;
+	public int score = 0;
 	public int spawnSpeed;
 	
 	//instantiating singleton
@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 	{
 		//setting it to itself
 		Instance = this;
+		DontDestroyOnLoad(gameObject);
 	}
 
 	private void Update()

@@ -18,5 +18,4 @@ public class FinalScore : MonoBehaviour
 	{
 		finalScoreText.text = "your score was: " + GameManager.Instance.score;
 	}
-
 }

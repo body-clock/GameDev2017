@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Turret : MonoBehaviour
 {
     public float turretSpeed;
-    public float slowedSpeed;
+    public float boostedSpeed;
 
     public float totalHealth;
     public float currentHealth;
@@ -25,11 +25,12 @@ public class Turret : MonoBehaviour
 
     private void Update()
     {
-        FaceMouse();
-        MoveTurret();
+        FollowMouse();  
+        //FaceMouse();
+        //MoveTurret();
 
         pos = transform.position;
-        slowedSpeed = turretSpeed - 7;
+        boostedSpeed = turretSpeed + 0.1f;
         
         float screenRatio = Screen.width / Screen.height;
         float widthOrtho = Camera.main.orthographicSize * screenRatio;
@@ -65,48 +66,32 @@ public class Turret : MonoBehaviour
         }
         
     }
-
-    void FaceMouse()
+    
+    void FollowMouse()
     {
-        Vector3 mousePosition = Input.mousePosition;
-        //converting our mousePosition from a screen to a world point
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        transform.position = Vector2.Lerp(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), turretSpeed);
         
-        //subtracting our position from the mouse position in order to determine 
-        //which direction we should be facing
-        Vector2 direction = new Vector2(
-            mousePosition.x - transform.position.x,
-            mousePosition.y - transform.position.y);
-        
-        //facing our object towards mouse
-        transform.up = direction;
-    }
-
-    void MoveTurret()
-    {
-        //move with WASD
-        var move = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        difference.Normalize();
+        float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0f, 0f, rotation_z);
 
         if (Input.GetMouseButton(0))
         {
-            transform.position += move * slowedSpeed * Time.deltaTime;
+            transform.position = Vector2.Lerp(transform.position,
+                Camera.main.ScreenToWorldPoint(Input.mousePosition), boostedSpeed);
         }
-        else
-        {
-            transform.position += move * turretSpeed * Time.deltaTime;
-        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Bonus"))
         {
-            Debug.Log("BONUS!");
             Destroy(other.gameObject);
             Instantiate(BonusParticle, gameObject.transform.position, Quaternion.identity);
 
-            GameManager.Instance.score+=10;
-
+            GameManager.Instance.score += EnemyManager.Instance.bonusValue;
         }
         
         if (other.gameObject.CompareTag("Enemy"))
@@ -116,5 +101,4 @@ public class Turret : MonoBehaviour
             currentHealth-=damage;
         }
     }
-
 }

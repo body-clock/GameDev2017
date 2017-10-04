@@ -21,8 +21,7 @@ public class Bonus {
     {
         //constructor - runs when we say "new"
 
-        frequency = (int) UnityEngine.Random.Range(1f, 4f);
-        Debug.Log(frequency);
+        frequency = (int) UnityEngine.Random.Range(1f, 4f);    
 		
         //casting a float as an int
         xCoord = (int) UnityEngine.Random.Range(-8f,8f);
@@ -33,6 +32,4 @@ public class Bonus {
         bonusVisual = GameObject.Instantiate(EnemyManager.Instance.bonusPrefab, new Vector3(xCoord, yCoord), Quaternion.identity);
         bonusVisual.transform.parent = EnemyManager.Instance.enemyFormation.transform;
     }
-    
-
 }

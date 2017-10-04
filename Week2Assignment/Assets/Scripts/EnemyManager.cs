@@ -22,6 +22,9 @@ public class EnemyManager : MonoBehaviour
 	//dynamic enemy count can be changed in inspector and the list size adjusts
 	public int enemyCount = 5;
 	
+	//value of the bonus
+	public int bonusValue = 10;
+	
 	//start location of the formation
 	public Vector3 formationSpawn;
 	
@@ -68,10 +71,10 @@ public class EnemyManager : MonoBehaviour
 	void Update () {
 		
 		//populating the enemy formation with enemies
-		if (enemyFormation.transform.childCount == 0)	
+		if (enemyFormation.transform.childCount == 0)
 		{
 			SpawnEnemy();
-		}	
+		}
 		
 		MoveEnemyFormation();
 	}

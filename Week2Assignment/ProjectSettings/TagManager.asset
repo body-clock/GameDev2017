@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Enemy
   - Bullet
+  - Turret
+  - Bonus
+  - Boost
   layers:
   - Default
   - TransparentFX

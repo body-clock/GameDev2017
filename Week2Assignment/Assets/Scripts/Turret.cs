@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,20 +13,33 @@ public class Turret : MonoBehaviour
     public float currentHealth;
     public float damage;
 
+    public float totalBoost;
+    public float currentBoost;
+    public float decreaseRate;
+    public float increaseRate;
+
     public GameObject BonusParticle;
     public GameObject TerrainParticle;
+    public GameObject BoostParticle;
 
     public Vector3 pos;
 
     private void Start()
     {
         currentHealth = totalHealth;
+        currentBoost = totalBoost;
     }
 
 
     private void Update()
     {
-        FollowMouse();  
+
+        FollowMouse();
+
+        if (currentBoost > 0)
+        {
+            Boost();
+        }
         //FaceMouse();
         //MoveTurret();
 
@@ -75,13 +89,28 @@ public class Turret : MonoBehaviour
         difference.Normalize();
         float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotation_z);
+    }
 
+    void Boost()
+    {
         if (Input.GetMouseButton(0))
         {
             transform.position = Vector2.Lerp(transform.position,
                 Camera.main.ScreenToWorldPoint(Input.mousePosition), boostedSpeed);
-        }
 
+            if (currentBoost>0)
+            {
+                currentBoost -= decreaseRate;
+            }
+        }
+        else
+        {
+            if (currentBoost>totalBoost)
+            {
+                currentBoost = totalBoost;
+            }
+
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -99,6 +128,19 @@ public class Turret : MonoBehaviour
             Instantiate(TerrainParticle, gameObject.transform.position, Quaternion.identity);
             
             currentHealth-=damage;
+        }
+
+        if (other.gameObject.CompareTag("Boost"))
+        {
+            Destroy(other.gameObject);
+            Instantiate(BoostParticle, gameObject.transform.position, Quaternion.identity);
+            
+            currentBoost += increaseRate;
+        }
+        
+        if (currentHealth>totalHealth)
+        {
+            currentHealth = totalHealth;
         }
     }
 }

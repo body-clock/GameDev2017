@@ -890,8 +890,9 @@ MonoBehaviour:
     type: 2}
   enemyFormation: {fileID: 845486892}
   speed: 3
-  enemyCount: 30
+  enemyCount: 20
   bonusValue: 10
+  waveTracker: 0
   formationSpawn: {x: 0, y: 0, z: 0}
 --- !u!1 &1672610598
 GameObject:
@@ -1047,7 +1048,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -439.32138, y: 1772.4978}
+  m_AnchoredPosition: {x: -439.3214, y: 1772.4978}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2049235793
@@ -1135,7 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e6b0937e2f25f9418f2708902b6d108, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretSpeed: 0.015
+  turretSpeed: 2
   boostedSpeed: 0
   totalHealth: 100
   currentHealth: 0

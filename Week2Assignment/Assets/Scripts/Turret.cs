@@ -43,7 +43,7 @@ public class Turret : MonoBehaviour
         //MoveTurret();
 
         pos = transform.position;
-        boostedSpeed = turretSpeed + 0.1f;
+        boostedSpeed = turretSpeed + 2;
         
         float screenRatio = Screen.width / Screen.height;
         float widthOrtho = Camera.main.orthographicSize * screenRatio;
@@ -82,7 +82,7 @@ public class Turret : MonoBehaviour
     
     void FollowMouse()
     {
-        transform.position = Vector2.Lerp(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), turretSpeed);
+        transform.position = Vector2.Lerp(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), turretSpeed * Time.deltaTime);
         
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         difference.Normalize();
@@ -95,7 +95,7 @@ public class Turret : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             transform.position = Vector2.Lerp(transform.position,
-                Camera.main.ScreenToWorldPoint(Input.mousePosition), boostedSpeed);
+                Camera.main.ScreenToWorldPoint(Input.mousePosition), boostedSpeed * Time.deltaTime);
 
             if (currentBoost>0)
             {

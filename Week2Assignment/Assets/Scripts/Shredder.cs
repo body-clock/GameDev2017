@@ -9,7 +9,7 @@ public class Shredder : MonoBehaviour
 	//and collide with our shredder
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Enemy") || other.CompareTag("Bonus") || other.CompareTag("Boost"))
+		if (other.CompareTag("Enemy") || other.CompareTag("Bonus") || other.CompareTag("Boost") || other.CompareTag("Heart"))
 		{
 			Destroy(other.gameObject);
 		}

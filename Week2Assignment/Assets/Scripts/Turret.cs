@@ -20,6 +20,7 @@ public class Turret : MonoBehaviour
     public GameObject BonusParticle;
     public GameObject TerrainParticle;
     public GameObject BoostParticle;
+    public GameObject HealthParticle;
 
     public Vector3 pos;
 
@@ -136,7 +137,16 @@ public class Turret : MonoBehaviour
             
             currentBoost += increaseRate;
         }
-        
+
+        if (other.gameObject.CompareTag("Heart"))
+        {
+            Destroy(other.gameObject);
+            Instantiate(HealthParticle, gameObject.transform.position, Quaternion.identity);
+
+            currentHealth += 30;
+        }
+
+
         if (currentHealth>totalHealth)
         {
             currentHealth = totalHealth;

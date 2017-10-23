@@ -9,6 +9,7 @@ TagManager:
   - Turret
   - Bonus
   - Boost
+  - Heart
   layers:
   - Default
   - TransparentFX

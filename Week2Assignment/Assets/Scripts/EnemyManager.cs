@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
 	public GameObject enemyPrefab;
 	public GameObject bonusPrefab;
 	public GameObject boostPrefab;
+	public GameObject heartPrefab;
 	
 	//formation so I can move all as a whole
 	public GameObject enemyFormation;
@@ -19,10 +20,13 @@ public class EnemyManager : MonoBehaviour
 	public Enemy e;
 	public Bonus b;
 	public Boost z;
+	public Heart h;
 	
 	public float speed;
 	//dynamic enemy count can be changed in inspector and the list size adjusts
 	public int enemyCount = 5;
+
+	public int healthSpawnChance;
 	
 	//value of the bonus
 	public int bonusValue = 10;
@@ -36,6 +40,8 @@ public class EnemyManager : MonoBehaviour
 	private List<Enemy> enemyList;
 	private List<Bonus> bonusList;
 
+	public Turret turretScript;
+
 	void Start ()
 	{
 		Instance = this;
@@ -46,6 +52,7 @@ public class EnemyManager : MonoBehaviour
 		
 		//centers our formation relative to children
 		enemyFormation.transform.localPosition = Vector3.zero;
+		bonusPrefab.SetActive(true);
 	}
 	
 	public void SpawnEnemy()
@@ -66,6 +73,18 @@ public class EnemyManager : MonoBehaviour
 		{
 			z = new Boost();
 			//didnt need to add to a list. why?
+		}
+
+		if (turretScript.currentHealth < 50)
+		{
+
+			healthSpawnChance = Random.Range(0, 2);
+			Debug.Log(healthSpawnChance);
+
+			if (healthSpawnChance == 1)
+			{
+				h = new Heart();
+			}
 		}
 		
 	}

@@ -21,6 +21,8 @@ public class EnemyManager : MonoBehaviour
 	public Bonus b;
 	public Boost z;
 	public Heart h;
+
+	public Obstacle terrain;
 	
 	public float speed;
 	//dynamic enemy count can be changed in inspector and the list size adjusts
@@ -43,6 +45,8 @@ public class EnemyManager : MonoBehaviour
 
 	public Turret turretScript;
 
+	private bool overlapping;
+
 	void Start ()
 	{
 		Instance = this;
@@ -58,6 +62,7 @@ public class EnemyManager : MonoBehaviour
 	
 	public void SpawnEnemy()
 	{
+		
 		for (int i = 0; i <= enemyCount; i++)
 		{	
 			e = new Enemy();	
@@ -90,6 +95,15 @@ public class EnemyManager : MonoBehaviour
 		}
 		
 	}
+
+	/*public void SpawnObstacle()
+	{
+		for (int i = 0; i < 5; i++)
+		{
+			terrain = new Obstacle(enemyPrefab, 5);
+			terrain.visual.gameObject.transform.SetParent(enemyFormation.transform);
+		}
+	}*/
 
 	public void MoveEnemyFormation()
 	{

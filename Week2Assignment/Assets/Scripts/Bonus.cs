@@ -7,15 +7,7 @@ public class Bonus {
     public GameObject bonusVisual;
     public int xCoord;
     public int yCoord;
-    public string name;
-    public Transform enemyPos;
-
-    public Vector3 screenPos;
-
-    public static int frequency;
-
-    public int scoreBonus = 10;
-	
+    public static int frequency;	
 
     public Bonus()
     {

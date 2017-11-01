@@ -7,15 +7,10 @@ public class AudioManager : MonoBehaviour
 
 	public AudioManager instance;
 
-	// Use this for initialization
 	void Start ()
 	{
+	//singleton pattern so we only have 1 music player
 		instance = this;
 		DontDestroyOnLoad(gameObject);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Heart {
 
-//visual representation of our enemy
+	//visual representation of our heart
 	public GameObject heartVisual;
 	//randomized coordinates in space
 	public int xCoord;

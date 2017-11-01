@@ -8,7 +8,6 @@ public class HealthBar : MonoBehaviour
 	public static HealthBar instance;
 	public Turret turretScript;
 
-	// Use this for initialization
 	void Start ()
 	{
 		instance = this;
@@ -21,6 +20,7 @@ public class HealthBar : MonoBehaviour
 
 	void ReduceHealth()
 	{
+		//changing the scale of our sprite in order to indicate decreasing health
 		transform.localScale = new Vector3((turretScript.currentHealth / turretScript.totalHealth), .7f, 1);
 	}
 }

@@ -22,6 +22,8 @@ public class Turret : MonoBehaviour
     public GameObject BoostParticle;
     public GameObject HealthParticle;
 
+    public AudioDirector _AudioDirector;
+
     public Vector3 pos;
 
     private void Start()
@@ -83,6 +85,7 @@ public class Turret : MonoBehaviour
     
     void FollowMouse()
     {
+        //following our mouse
         transform.position = Vector2.Lerp(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), turretSpeed * Time.deltaTime);
         
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -95,9 +98,11 @@ public class Turret : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            //increasing our speed when the left mouse button is held down
             transform.position = Vector2.Lerp(transform.position,
                 Camera.main.ScreenToWorldPoint(Input.mousePosition), boostedSpeed * Time.deltaTime);
-
+            
+            //decrease as long as our boost is greater than 0
             if (currentBoost>0)
             {
                 currentBoost -= decreaseRate;
@@ -107,6 +112,7 @@ public class Turret : MonoBehaviour
         {
             if (currentBoost>totalBoost)
             {
+                //setting max boost
                 currentBoost = totalBoost;
             }
 
@@ -115,12 +121,14 @@ public class Turret : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        //detectign collisions and spawning correct particle systems
         if (other.gameObject.CompareTag("Bonus"))
         {
             Destroy(other.gameObject);
             Instantiate(BonusParticle, gameObject.transform.position, Quaternion.identity);
 
             GameManager.Instance.score += EnemyManager.Instance.bonusValue;
+            AudioDirector.instance.PlayMoneySound();
         }
         
         if (other.gameObject.CompareTag("Enemy"))
@@ -128,6 +136,7 @@ public class Turret : MonoBehaviour
             Instantiate(TerrainParticle, gameObject.transform.position, Quaternion.identity);
             
             currentHealth-=damage;
+            AudioDirector.instance.PlayHitSound();
         }
 
         if (other.gameObject.CompareTag("Boost"))
@@ -136,6 +145,7 @@ public class Turret : MonoBehaviour
             Instantiate(BoostParticle, gameObject.transform.position, Quaternion.identity);
             
             currentBoost += increaseRate;
+            AudioDirector.instance.PlayBoostSound();
         }
 
         if (other.gameObject.CompareTag("Heart"))
@@ -152,4 +162,6 @@ public class Turret : MonoBehaviour
             currentHealth = totalHealth;
         }
     }
+    
+    
 }

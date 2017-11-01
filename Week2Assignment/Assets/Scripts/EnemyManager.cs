@@ -26,6 +26,7 @@ public class EnemyManager : MonoBehaviour
 	//dynamic enemy count can be changed in inspector and the list size adjusts
 	public int enemyCount = 5;
 
+	//chance of spawning our heart
 	public int healthSpawnChance;
 	
 	//value of the bonus
@@ -77,10 +78,11 @@ public class EnemyManager : MonoBehaviour
 
 		if (turretScript.currentHealth < 50)
 		{
-
+			
 			healthSpawnChance = Random.Range(0, 2);
 			Debug.Log(healthSpawnChance);
-
+			
+			//spawning health at a 50% chance
 			if (healthSpawnChance == 1)
 			{
 				h = new Heart();
@@ -107,7 +109,8 @@ public class EnemyManager : MonoBehaviour
 			print("wave = " + waveTracker);
 			print("speed = " + speed);
 		}
-
+		
+		//tracking waves to increase speed over time
 		if (waveTracker >= 5)
 		{
 			speed *= 1.1f;

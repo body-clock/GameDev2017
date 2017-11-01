@@ -6,9 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class FinalScore : MonoBehaviour
 {
+	
+	//simple script to control the text in our final score screen
 	private Text finalScoreText;
 
-	// Use this for initialization
 	void Start ()
 	{
 		finalScoreText = GetComponent<Text>();

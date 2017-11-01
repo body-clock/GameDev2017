@@ -5,11 +5,11 @@ using UnityEngine;
 public class ScrollUV : MonoBehaviour
 {
 
+	//simple script to scroll our background
 	public float bgSpeed = 1f;
 	
 	void Update ()
 	{
-
 		MeshRenderer mr = GetComponent<MeshRenderer>();
 
 		Material mat = mr.material;

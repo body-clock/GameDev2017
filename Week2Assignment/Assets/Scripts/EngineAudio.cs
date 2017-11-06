@@ -14,10 +14,10 @@ public class EngineAudio : MonoBehaviour {
     
     
 	System.Random rand = new System.Random();
-	AudioLowPassFilter lowPassFilter;
+	AudioHighPassFilter _highPassFilter;
     
 	void Awake() {
-		lowPassFilter = GetComponent<AudioLowPassFilter>();
+		_highPassFilter = GetComponent<AudioHighPassFilter>();
 		Update();
 	}
     
@@ -28,6 +28,6 @@ public class EngineAudio : MonoBehaviour {
 	}
     
 	void Update() {
-		lowPassFilter.cutoffFrequency = engineOn ? cutoffOn : cutoffOff;
+		_highPassFilter.cutoffFrequency = engineOn ? cutoffOn : cutoffOff;
 	}
 }

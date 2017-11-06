@@ -1,122 +1,111 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.Scripting.APIUpdating;
 
 public class EnemyManager : MonoBehaviour
 {
+    //get prefabs
+    public GameObject terrainPrefab;
+    public GameObject cashPrefab;
+    public GameObject boostPrefab;
+    public GameObject healthPrefab;
+    public GameObject currentPoint;
+    public GameObject spawnedObject;
 
-	public static EnemyManager Instance;
-	
-	//prefabs so I can instantiate them
-	public GameObject enemyPrefab;
-	public GameObject bonusPrefab;
-	public GameObject boostPrefab;
-	public GameObject heartPrefab;
-	
-	//formation so I can move all as a whole
-	public GameObject enemyFormation;
-	
-	//declaring instances of my classes so I can instantiate in for loop
-	public Enemy e;
-	public Bonus b;
-	public Boost z;
-	public Heart h;
-	
-	public float speed;
-	//dynamic enemy count can be changed in inspector and the list size adjusts
-	public int enemyCount = 5;
+    public GameObject enemyFormation;
 
-	//chance of spawning our heart
-	public int healthSpawnChance;
-	
-	//value of the bonus
-	public int bonusValue = 10;
+    public GameObject[] obstaclePrefabs;
+    public List<GameObject> spawnedObjects;
 
-	public int waveTracker;
-	
-	//start location of the formation
-	public Vector3 formationSpawn;
-	
-	//making my lists to store enemies (lists are dynamic, arrays are not)
-	private List<Enemy> enemyList;
-	private List<Bonus> bonusList;
+    public int xCount = 10;
+    public int yCount = 5;
+    public int buffer = 8;
+    public int index;
+    public float spacing = 1;
+    public float speed = 5f;
+    public float randomValue = 0;
 
-	public Turret turretScript;
+    public bool formationSpawned = false;
 
-	void Start ()
-	{
-		Instance = this;
-		
-		enemyList = new List<Enemy>();
-		
-		formationSpawn = new Vector3(10, 10);
-		
-		//centers our formation relative to children
-		enemyFormation.transform.localPosition = Vector3.zero;
-		bonusPrefab.SetActive(true);
-	}
-	
-	public void SpawnEnemy()
-	{
-		for (int i = 0; i <= enemyCount; i++)
-		{	
-			e = new Enemy();	
-			enemyList.Add(e);
-		}
+    public Turret turretScript;
+    
+    //create grid
+    
+    //when enemy count is == 0
+        //instantiate prefabs at points on the grid in nested for loop
+    
+    //add all objects as child of formation
+    
+    //move formation down
 
-		for (int i = 0; i <= Bonus.frequency; i++)
-		{
-			b = new Bonus();
-			//didnt need to add to a list. why?
-		}
-		
-		for (int i = 0; i <= Boost.frequency; i++)
-		{
-			z = new Boost();
-			//didnt need to add to a list. why?
-		}
+    private void Start()
+    {
+        obstaclePrefabs = new GameObject[] {cashPrefab,boostPrefab};
+    }
 
-		if (turretScript.currentHealth < 50)
-		{
-			
-			healthSpawnChance = Random.Range(0, 2);
-			Debug.Log(healthSpawnChance);
-			
-			//spawning health at a 50% chance
-			if (healthSpawnChance == 1)
-			{
-				h = new Heart();
-			}
-		}
-		
-	}
+    private void Update()
+    {
+        if (enemyFormation.transform.childCount == 0)
+        {
+            SpawnEnemies();
+            turretScript.streakCounter = 0;
+        }
+        
+        MoveFormationDown();
+        
+    }
 
-	public void MoveEnemyFormation()
-	{
-		//moves the formation downwards
-		enemyFormation.transform.position += Vector3.down * speed * Time.deltaTime;
-	}
+    void SpawnEnemies()
+    {
+        for (int i = 0 + buffer; i < yCount + buffer; i++)
+        {
+            for (int j = 0 - buffer; j < xCount - buffer; j++)
+            {
+                
+                //get random value
+                //set currentpoint to gameobject depending on frequency
+                //instantiate current point
 
+                randomValue = Random.value;
+                index = Random.Range(0, obstaclePrefabs.Length);
+                
+                //spawning objects based on probability 
+                if (randomValue < .7)
+                {
+                    //spawn terrain
+                    currentPoint = terrainPrefab;
+                } else if (randomValue > .7 && randomValue <= .9)
+                {
+                    //spawn anything
+                    currentPoint = obstaclePrefabs[index];
+                } else if (randomValue > .97)
+                {
+                    //spawn health
+                    currentPoint = healthPrefab;
+                }
 
-	// Update is called once per frame
-	void Update () {
-		
-		//populating the enemy formation with enemies
-		if (enemyFormation.transform.childCount == 0)
-		{
-			SpawnEnemy();
-			waveTracker++;
-			print("wave = " + waveTracker);
-			print("speed = " + speed);
-		}
-		
-		//tracking waves to increase speed over time
-		if (waveTracker >= 5)
-		{
-			speed *= 1.1f;
-			waveTracker = 0;
-		}
-		
-		MoveEnemyFormation();
-	}
+                spawnedObject = Instantiate(currentPoint, 
+                    new Vector3(j * spacing, i * spacing, 0), transform.rotation);
+                
+                spawnedObject.transform.parent = enemyFormation.transform; 
+                
+                spawnedObjects.Add(spawnedObject);
+                
+                j++;
+
+            }
+            i++;
+        }
+        formationSpawned = true;
+        randomValue = 0;
+    }
+
+    void MoveFormationDown()
+    {
+        enemyFormation.transform.Translate(Vector3.down * speed * Time.deltaTime);
+    }
+    
 }

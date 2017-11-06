@@ -11,7 +11,7 @@ public class AudioDirector : MonoBehaviour
 	public AudioClip boost;
 	public AudioClip money;
 	public AudioClip hit;
-	
+	public AudioClip heart;
 
 	// Use this for initialization
 	void Start ()
@@ -34,5 +34,10 @@ public class AudioDirector : MonoBehaviour
 	public void PlayHitSound()
 	{
 		ads.PlayOneShot(hit);
+	}
+
+	public void playHealthSound()
+	{
+		ads.PlayOneShot(heart);
 	}
 }

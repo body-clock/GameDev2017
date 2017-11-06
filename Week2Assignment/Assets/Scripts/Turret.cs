@@ -26,6 +26,8 @@ public class Turret : MonoBehaviour
 
     public Vector3 pos;
 
+    public int streakCounter;
+
     private void Start()
     {
         currentHealth = totalHealth;
@@ -127,8 +129,19 @@ public class Turret : MonoBehaviour
             Destroy(other.gameObject);
             Instantiate(BonusParticle, gameObject.transform.position, Quaternion.identity);
 
-            GameManager.Instance.score += EnemyManager.Instance.bonusValue;
+            
+
+            if (streakCounter > 0)
+            {
+                GameManager.Instance.score += 10 * streakCounter;
+            } else if (streakCounter == 0)
+            {
+                GameManager.Instance.score += 10;
+            }
+            
             AudioDirector.instance.PlayMoneySound();
+            streakCounter++;
+            Debug.Log(streakCounter);
         }
         
         if (other.gameObject.CompareTag("Enemy"))
@@ -154,6 +167,7 @@ public class Turret : MonoBehaviour
             Instantiate(HealthParticle, gameObject.transform.position, Quaternion.identity);
 
             currentHealth += 30;
+            AudioDirector.instance.playHealthSound();
         }
 
 

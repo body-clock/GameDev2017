@@ -7,7 +7,12 @@ public class ScrollUV : MonoBehaviour
 
 	//simple script to scroll our background
 	public float bgSpeed = 1f;
-	
+
+	private void Start()
+	{
+		DontDestroyOnLoad(gameObject);
+	}
+
 	void Update ()
 	{
 		MeshRenderer mr = GetComponent<MeshRenderer>();

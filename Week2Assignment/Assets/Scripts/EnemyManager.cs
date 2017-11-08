@@ -31,6 +31,8 @@ public class EnemyManager : MonoBehaviour
     public bool formationSpawned = false;
 
     public Turret turretScript;
+
+    public int waveCounter = 0;
     
     //create grid
     
@@ -52,6 +54,12 @@ public class EnemyManager : MonoBehaviour
         {
             SpawnEnemies();
             turretScript.streakCounter = 0;
+            waveCounter++;
+            
+            if (waveCounter % 5 == 0)
+            {
+                speed *= 1.13f;
+            }
         }
         
         MoveFormationDown();

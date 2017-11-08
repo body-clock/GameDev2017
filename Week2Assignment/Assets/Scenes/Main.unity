@@ -7919,11 +7919,12 @@ MonoBehaviour:
   yCount: 10
   buffer: 7
   index: 0
-  spacing: 1
+  spacing: 0.7
   speed: 5
   randomValue: 0
   formationSpawned: 0
   turretScript: {fileID: 2049235796}
+  waveCounter: 0
 --- !u!1 &1672610598
 GameObject:
   m_ObjectHideFlags: 0

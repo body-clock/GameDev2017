@@ -79,24 +79,29 @@ public class EnemyManager : MonoBehaviour
 
                 randomValue = Random.value;
                 index = Random.Range(0, obstaclePrefabs.Length);
+                float offset = Random.Range(-1f, 1f);
                 
                 //spawning objects based on probability 
                 if (randomValue < .7)
                 {
                     //spawn terrain
                     currentPoint = terrainPrefab;
-                } else if (randomValue > .7 && randomValue <= .9)
+                } else if (randomValue > .7 && randomValue <= .8)
                 {
                     //spawn anything
-                    currentPoint = obstaclePrefabs[index];
-                } else if (randomValue > .97)
+                    currentPoint = cashPrefab;
+                }else if (randomValue > .8 && randomValue < .85)
+                {
+                    currentPoint = boostPrefab;
+                } 
+                else if (randomValue > .97)
                 {
                     //spawn health
                     currentPoint = healthPrefab;
                 }
 
                 spawnedObject = Instantiate(currentPoint, 
-                    new Vector3(j * spacing, i * spacing, 0), transform.rotation);
+                    new Vector3(j+offset * spacing, i+offset * spacing, 0), transform.rotation);
                 
                 spawnedObject.transform.parent = enemyFormation.transform; 
                 

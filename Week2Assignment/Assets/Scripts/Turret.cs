@@ -33,7 +33,8 @@ public class Turret : MonoBehaviour
 
     public CameraShake camShake;
 
-    public Animator cashAnim;    
+    public Animator cashAnim;
+    public Animator streakAnimator;
 
     private void Awake()
     {
@@ -151,6 +152,9 @@ public class Turret : MonoBehaviour
             AudioDirector.instance.PlayMoneySound();
             streakCounter++;
             Debug.Log(streakCounter);
+            streakAnimator.Play("streakBob");
+            
+            
         }
         
         if (other.gameObject.CompareTag("Enemy"))

@@ -18,6 +18,6 @@ public class StreakText : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		streakText.text = "streak: " + turretScript.streakCounter;
+		streakText.text = turretScript.streakCounter.ToString();
 	}
 }

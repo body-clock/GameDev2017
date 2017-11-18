@@ -33,6 +33,8 @@ public class Turret : MonoBehaviour
 
     public CameraShake camShake;
 
+    public Animator cashAnim;    
+
     private void Awake()
     {
         currentHealth = totalHealth;
@@ -133,7 +135,7 @@ public class Turret : MonoBehaviour
         //detectign collisions and spawning correct particle systems
         if (other.gameObject.CompareTag("Bonus"))
         {
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
             Instantiate(BonusParticle, gameObject.transform.position, Quaternion.identity);
 
             

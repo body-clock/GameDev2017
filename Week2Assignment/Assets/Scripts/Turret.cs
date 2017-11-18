@@ -27,11 +27,18 @@ public class Turret : MonoBehaviour
     public Vector3 pos;
 
     public int streakCounter;
+    
+    //handle cam shake
+    public float camShakeAmt = 0.1f;
 
-    private void Start()
+    public CameraShake camShake;
+
+    private void Awake()
     {
         currentHealth = totalHealth;
         currentBoost = totalBoost;
+
+        camShake = Camera.main.GetComponent<CameraShake>();
     }
 
 
@@ -150,6 +157,8 @@ public class Turret : MonoBehaviour
             
             currentHealth-=damage;
             AudioDirector.instance.PlayHitSound();
+            
+            camShake.Shake(camShakeAmt, 0.1f);
         }
 
         if (other.gameObject.CompareTag("Boost"))

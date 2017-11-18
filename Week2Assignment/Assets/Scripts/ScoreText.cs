@@ -16,6 +16,6 @@ public class ScoreText : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		scoreTextVisual.text = "score: " + GameManager.Instance.score;
+		scoreTextVisual.text = "$" + GameManager.Instance.score;
 	}
 }

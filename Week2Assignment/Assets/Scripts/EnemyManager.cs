@@ -29,6 +29,7 @@ public class EnemyManager : MonoBehaviour
     public float randomValue = 0;
 
     public bool formationSpawned = false;
+    public bool isTutorial = false;
 
     public Turret turretScript;
 
@@ -52,7 +53,14 @@ public class EnemyManager : MonoBehaviour
     {
         if (enemyFormation.transform.childCount == 0)
         {
-            SpawnEnemies();
+            if (isTutorial)
+            {
+                SpawnTutorial();
+            }
+            else
+            {
+                SpawnEnemies();
+            }
             turretScript.streakCounter = 0;
             waveCounter++;
             
@@ -114,6 +122,11 @@ public class EnemyManager : MonoBehaviour
         }
         formationSpawned = true;
         randomValue = 0;
+    }
+
+    void SpawnTutorial()
+    {
+        
     }
 
     void MoveFormationDown()

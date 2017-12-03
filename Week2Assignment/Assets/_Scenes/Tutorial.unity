@@ -3851,10 +3851,27 @@ MonoBehaviour:
   leftClick: {fileID: 1843116582}
   moveCursor: {fileID: 1501348430}
   boostUI: {fileID: 1437518719}
+  healthUI: {fileID: 1885303860}
+  streakText: {fileID: 715258694}
+  streakCounterText: {fileID: 1202215585}
   car: {fileID: 2049235793}
   cashPrefab: {fileID: 1135035893871900, guid: 57f6792ef20d07a409b645255764d643, type: 2}
+  boostPrefab: {fileID: 1535060404863158, guid: a2eb6327ca01fd144890ac17761d1c62,
+    type: 2}
+  healthPrefab: {fileID: 1343450506644448, guid: 0da64d6defff3fb4d9571d53d3c691d6,
+    type: 2}
+  terrainPrefab: {fileID: 1378109466982962, guid: 4198ed4f5c753be43ab2c06dfad42643,
+    type: 2}
+  enemyFormation: {fileID: 845486892}
+  terrainClump: {fileID: 809435163}
+  cashClump: {fileID: 1180468151}
   cursorMoved: 0
   mouseClicked: 0
+  cashSpawned: 0
+  streakSpawned: 0
+  boostSpawned: 0
+  terrainSpawned: 0
+  healthSpawned: 0
   cursorAnim: {fileID: 1501348432}
 --- !u!4 &705297892
 Transform:
@@ -4011,6 +4028,34 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 744300014}
+--- !u!1 &809435163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 809435164}
+  m_Layer: 0
+  m_Name: TerrainClump
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &809435164
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 809435163}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.90446925, y: 3.0456548, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &845486892
 GameObject:
   m_ObjectHideFlags: 0
@@ -7486,6 +7531,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2049235795}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1180468151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1180468152}
+  m_Layer: 0
+  m_Name: CashClump
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1180468152
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1180468151}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1195027515
 GameObject:

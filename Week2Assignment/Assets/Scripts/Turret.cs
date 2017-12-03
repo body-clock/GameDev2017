@@ -151,7 +151,7 @@ public class Turret : MonoBehaviour
             
             AudioDirector.instance.PlayMoneySound();
             streakCounter++;
-            Debug.Log(streakCounter);
+            Debug.Log("test tutorial streak counter: "+streakCounter);
             streakAnimator.Play("streakBob");
             
             

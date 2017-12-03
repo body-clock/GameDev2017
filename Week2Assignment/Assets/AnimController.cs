@@ -11,7 +11,8 @@ public class AnimController : MonoBehaviour
 
     private void Start()
     {
-        anim = GetComponent<Animator>();    
+        anim = GetComponent<Animator>();
+        col = GetComponent<PolygonCollider2D>();
     }
 
     private void OnCollisionEnter2D(Collision2D other)

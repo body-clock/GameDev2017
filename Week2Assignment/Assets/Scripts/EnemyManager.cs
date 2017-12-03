@@ -60,8 +60,8 @@ public class EnemyManager : MonoBehaviour
             else
             {
                 SpawnEnemies();
+                turretScript.streakCounter = 0;
             }
-            turretScript.streakCounter = 0;
             waveCounter++;
             
             if (waveCounter % 5 == 0)

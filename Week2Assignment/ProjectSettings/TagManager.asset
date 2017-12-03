@@ -10,6 +10,8 @@ TagManager:
   - Bonus
   - Boost
   - Heart
+  - High Score
+  - Final Score
   layers:
   - Default
   - TransparentFX

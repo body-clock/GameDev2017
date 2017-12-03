@@ -22,6 +22,9 @@ public class Turret : MonoBehaviour
     public GameObject BoostParticle;
     public GameObject HealthParticle;
 
+    public GameObject LeftTrail;
+    public GameObject RightTrail;
+
     public AudioDirector _AudioDirector;
 
     public Vector3 pos;
@@ -36,12 +39,16 @@ public class Turret : MonoBehaviour
     public Animator cashAnim;
     public Animator streakAnimator;
 
+    private AudioSource aud;
+
     private void Awake()
     {
         currentHealth = totalHealth;
         currentBoost = totalBoost;
 
         camShake = Camera.main.GetComponent<CameraShake>();
+        aud = GetComponent<AudioSource>();
+        aud.pitch = 0.8f;
     }
 
 
@@ -119,6 +126,14 @@ public class Turret : MonoBehaviour
             {
                 currentBoost -= decreaseRate;
             }
+            LeftTrail.GetComponent<ParticleSystem>().startSize = .1f;
+            RightTrail.GetComponent<ParticleSystem>().startSize = .1f;
+
+            aud.pitch += 0.02f;
+            if (aud.pitch >= 1.2f)
+            {
+                aud.pitch = 1.2f;
+            }
         }
         else
         {
@@ -127,7 +142,14 @@ public class Turret : MonoBehaviour
                 //setting max boost
                 currentBoost = totalBoost;
             }
+            LeftTrail.GetComponent<ParticleSystem>().startSize = .03f;
+            RightTrail.GetComponent<ParticleSystem>().startSize = .03f;
 
+            aud.pitch -= 0.02f;
+            if (aud.pitch <= 0.8f)
+            {
+                aud.pitch = 0.8f;
+            }
         }
     }
 
